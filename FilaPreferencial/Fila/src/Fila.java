@@ -25,17 +25,20 @@ public class Fila {
     if (!filaVazia()) {
       Iterator<Paciente> iterator = fila.iterator();
       Paciente paciente = iterator.next();
-      while (iterator.hasNext()) {
-        if (contador < 3 && paciente.isPreferencial()) {
+
+      while (iterator.hasNext() && contador <= 3) {
+        Iterator<Paciente> iterator2 = fila.iterator();
+        Paciente pacientePref = iterator2.next();
+        if (pacientePref.isPreferencial()) {
           contador++;
-          pacienteChamado = paciente;
-          iterator.remove(); 
+          pacienteChamado = pacientePref;
+          iterator2.remove(); 
           break; 
-        } else paciente = iterator.next();
+        } 
       } 
-        if (contador <= 3 || !paciente.isPreferencial()) {
+        if (pacienteChamado == null) {
           pacienteChamado = paciente;
-          fila.poll();
+          fila.remove(paciente);
           contador = 0;
         }
     }
