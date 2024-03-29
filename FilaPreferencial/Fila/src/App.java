@@ -4,7 +4,22 @@ public class App {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         Fila fila = new Fila();
+        Paciente paciente1 = new Paciente("a", true);
+        Paciente paciente2 = new Paciente("b", false);
+        Paciente paciente3 = new Paciente("c", true);
+        Paciente paciente4 = new Paciente("d", true);
+        Paciente paciente5 = new Paciente("e", false);
+        Paciente paciente6 = new Paciente("f", true);
+
+        fila.adicionarPaciente(paciente1);
+        fila.adicionarPaciente(paciente2);
+        fila.adicionarPaciente(paciente3);
+        fila.adicionarPaciente(paciente4);
+        fila.adicionarPaciente(paciente5);
+        fila.adicionarPaciente(paciente6);
+        
         exibirMenu(fila);
+
     }
 
     private static void exibirMenu(Fila fila){

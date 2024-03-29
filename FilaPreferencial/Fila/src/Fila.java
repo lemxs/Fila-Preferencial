@@ -22,26 +22,28 @@ public class Fila {
     Paciente pacienteChamado = null;
 
 
-    if (!filaVazia()) {
       Iterator<Paciente> iterator = fila.iterator();
       Paciente paciente = iterator.next();
 
-      while (iterator.hasNext() && contador <= 3) {
-        Iterator<Paciente> iterator2 = fila.iterator();
-        Paciente pacientePref = iterator2.next();
-        if (pacientePref.isPreferencial()) {
+      Iterator<Paciente> iterator2 = fila.iterator();
+      Paciente pacientePref = iterator2.next();
+      
+      for(int i = 1; i <= fila.size(); i++){
+        if (pacientePref.isPreferencial() && contador < 3) {
           contador++;
           pacienteChamado = pacientePref;
           iterator2.remove(); 
           break; 
+        }else if(i < fila.size()) {
+          pacientePref = iterator2.next();
         } 
-      } 
+      }
+
         if (pacienteChamado == null) {
           pacienteChamado = paciente;
-          fila.remove(paciente);
+          iterator.remove();
           contador = 0;
         }
-    }
 
     return pacienteChamado;
   }
@@ -59,5 +61,8 @@ public class Fila {
         }
     }
     System.out.println("Tamanho da fila: " + fila.size() + " pacientes");
+  }
+
+  public void adicionarPaciente(String string, boolean b) {
   }
 }
